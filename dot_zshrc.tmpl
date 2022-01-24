@@ -36,13 +36,7 @@ export GPG_TTY=$(tty)
 
 alias git-sha-copy='git rev-parse HEAD | pbcopy'
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '{{ .chezmoi.homeDir }}/google-cloud-sdk/path.zsh.inc' ]; then source '{{ .chezmoi.homeDir }}/google-cloud-sdk/path.zsh.inc'; fi
-# The next line enables shell command completion for gcloud.
-if [ -f '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc' ]; then source '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc'; fi
-
-
-{{- if (eq .chezmoi.os "darwin") -}}
+{{ if (eq .chezmoi.os "darwin") -}}
 export PATH="${PATH}:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 hash -d ortoo={{ .chezmoi.homeDir }}/Development/ortoo
 hash -d thekey={{ .chezmoi.homeDir }}/Development/thekey
@@ -52,6 +46,10 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 export PATH="$PATH:{{ .chezmoi.homeDir }}/Development/thekey/keyflow/bin"
 {{ end -}}
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '{{ .chezmoi.homeDir }}/google-cloud-sdk/path.zsh.inc' ]; then source '{{ .chezmoi.homeDir }}/google-cloud-sdk/path.zsh.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc' ]; then source '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc'; fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
