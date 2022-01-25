@@ -11,7 +11,7 @@
 {{- $interactive := stdinIsATTY -}}
 
 {{- /* Initializes the name variable with a default value */ -}}
-{{- $name := "Your Name" -}}
+{{- $name := "James Sharp" -}}
 {{- /* If name was previously set, reuses it */ -}}
 {{- if hasKey . "name" -}}
 {{-   $name = .name -}}
@@ -21,7 +21,7 @@
 {{- end -}}
 
 {{- /* Does the same for the email */ -}}
-{{- $email := "your@email.com" -}}
+{{- $email := "james@ortootech.com" -}}
 {{- if hasKey . "email" -}}
 {{-   $email = .email -}}
 {{- else if $interactive -}}
