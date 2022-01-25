@@ -19,14 +19,6 @@ fi
 
 setopt no_share_history
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
-
-# Customize to your needs...
-autoload -Uz promptinit
-promptinit
-prompt powerlevel10k
-
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # place this after nvm initialization!
