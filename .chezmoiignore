@@ -2,3 +2,8 @@
 install.sh
 LICENSE
 README.md
+
+# Ignore ssh config if not on mac
+{{ if (ne .chezmoi.os "darwin") -}}
+.ssh/
+{{ end -}}
