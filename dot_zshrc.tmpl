@@ -48,7 +48,7 @@ then
   load-nvmrc
 fi
 
-export GPG_TTY=$(tty)
+export GPG_TTY=$TTY
 
 alias git-sha-copy='git rev-parse HEAD | pbcopy'
 
