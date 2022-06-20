@@ -17,6 +17,10 @@
 # @raycast.authorURL https://github.com/jamessharp
 
 PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+if [ -S ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ]
+then 
+  export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+fi
 
 directory=$1
 foundDirectory=''
