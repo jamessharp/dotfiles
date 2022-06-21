@@ -28,10 +28,18 @@ on run argv
     set screenHeight to item 4 of desktopBounds
 	end tell
 
+  if screenWidth < 2800 then
+    set windowWidth to screenWidth
+    set codeX to 0
+  else
+    set windowWidth to screenWidth / 2.0
+    set codeX to screenWidth / 2.0
+  end if
+
   if launchedSafari is true
       tell application "System Events" to tell application process "Safari"
       try
-        set size of window 1 to {screenWidth / 2.0, screenHeight}
+        set size of window 1 to {windowWidth, screenHeight}
         set position of window 1 to {0, 0}
       on error errmess
         log errmess
@@ -42,8 +50,8 @@ on run argv
 
   tell application "System Events" to tell application process "Code"
 		try
-			set position of window 1 to {screenWidth / 2.0, 0}
-      set size of window 1 to {screenWidth / 2.0, screenHeight}
+			set position of window 1 to {codeX, 0}
+      set size of window 1 to {windowWidth, screenHeight}
 		on error errmess
 			log errmess
 			-- no window open
