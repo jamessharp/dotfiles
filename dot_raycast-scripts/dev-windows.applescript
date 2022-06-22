@@ -28,7 +28,7 @@ on run argv
     set screenHeight to item 4 of desktopBounds
 	end tell
 
-  if screenWidth < 2800 then
+  if screenWidth < 1920 then
     set windowWidth to screenWidth
     set codeX to 0
   else
