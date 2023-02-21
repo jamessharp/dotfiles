@@ -1,5 +1,5 @@
 [user]
-	signingkey = 5A0B21C6B9FBE670
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG8y4k1Uj/D8MsAXC3o1YdT2lM/r8SUwiQ8P6rA5bXUE
 	name = {{ .name }}
 	email = {{ .email }}
 [pull]
@@ -15,6 +15,10 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[help]
+	autocorrect = prompt
+[gpg]
+  format = ssh
 [alias]
   # *********************
   # Rebase workflow

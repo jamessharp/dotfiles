@@ -4,6 +4,7 @@
 brew bundle --no-lock --file=/dev/stdin <<EOF
 tap "homebrew/bundle"
 tap "homebrew/core"
+brew "chezmoi"
 brew "gnupg"
 brew "pinentry-mac"
 cask "finicky"
@@ -11,8 +12,8 @@ cask "1password-cli"
 cask "raycast"
 brew "shellcheck"
 brew "python"
+brew "node"
 brew "git-lfs"
-cask "warp"
 EOF
 
 git lfs install
