@@ -40,6 +40,21 @@ done
 if [ -n "$foundDirectory" ]; then
   if [ -d "$foundDirectory/.devcontainer" ]; then
     echo "Opening $foundDirectory in devcontainer"
+    # Check if Docker is already running
+    if ! docker info > /dev/null 2>&1; then
+      echo "Starting docker and waiting for it to be ready..."
+      # Open Docker Desktop
+      open --background -a Docker
+
+      # Wait for Docker to start
+      while ! docker info > /dev/null 2>&1;
+      do
+        sleep 1
+      done
+
+      echo "Docker is now up and running!"
+    fi
+
     devcontainer open "$foundDirectory"
   elif [ -n "$(which code)" ]; then
     echo "Opening $foundDirectory"
