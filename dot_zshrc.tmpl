@@ -53,6 +53,10 @@ export GPG_TTY=$TTY
 
 alias git-sha-copy='git rev-parse HEAD | pbcopy'
 
+function wport() {
+  lsof -n -i :$1 | grep LISTEN
+}
+
 {{ if (eq .chezmoi.os "darwin") -}}
 export PATH="${PATH}:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 hash -d ortoo={{ .chezmoi.homeDir }}/Development/ortoo
