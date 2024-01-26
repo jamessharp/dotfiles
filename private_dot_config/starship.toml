@@ -12,6 +12,9 @@ disabled = true
 [azure]
 disabled = true
 
+[container]
+disabled = true
+
 
 # Nerd-fronts preset
 [buf]
