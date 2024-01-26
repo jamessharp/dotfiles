@@ -3,7 +3,8 @@
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 tap "homebrew/bundle"
-tap "homebrew/core"
+tap "homebrew/cask-fonts"
+brew "jq"
 brew "chezmoi"
 brew "pinentry-mac"
 cask "finicky"
@@ -13,6 +14,8 @@ brew "shellcheck"
 brew "python"
 brew "node"
 brew "git-lfs"
+brew "starship"
+cask "font-meslo-lg-nerd-font"
 EOF
 
 git lfs install
