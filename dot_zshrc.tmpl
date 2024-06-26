@@ -28,6 +28,8 @@ then
   load-nvmrc
 fi
 
+command -v corepack >/dev/null 2>&1 && corepack enable
+
 export GPG_TTY=$TTY
 
 alias git-sha-copy='git rev-parse HEAD | pbcopy'
