@@ -47,6 +47,7 @@ export PATH="{{ .chezmoi.homeDir }}/Development/ortoo/bin:${PATH}"
 export GOPATH="{{ .chezmoi.homeDir }}/Development/go"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 export PATH="$PATH:{{ .chezmoi.homeDir }}/Development/thekey/keyflow/bin"
+alias lg='lazygit'
 
 if [ -S ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ]; then export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock; fi
 {{ end -}}
