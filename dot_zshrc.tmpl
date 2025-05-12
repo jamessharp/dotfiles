@@ -39,6 +39,7 @@ function wport() {
 }
 
 {{ if (eq .chezmoi.os "darwin") -}}
+export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${PATH}:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 hash -d ortoo={{ .chezmoi.homeDir }}/Development/ortoo
 hash -d thekey={{ .chezmoi.homeDir }}/Development/thekey

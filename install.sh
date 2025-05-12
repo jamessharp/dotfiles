@@ -19,5 +19,12 @@ fi
 
 # POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
 script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
-# exec: replace current process with chezmoi init
-exec "$chezmoi" init --apply "--source=$script_dir"
+
+# Decide whether we have a TTY
+if [ -t 0 ] && [ -e /dev/tty ]; then
+  # Interactive run (e.g. on your laptop)
+  exec "$chezmoi" init --apply "--source=$script_dir"
+else
+  # Head-less (Devcontainers, CI)
+  exec "$chezmoi" init --apply --no-tty --force "--source=$script_dir"
+fi
