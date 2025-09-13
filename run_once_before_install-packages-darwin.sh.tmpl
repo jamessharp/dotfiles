@@ -1,7 +1,7 @@
 {{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/bash
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 brew "jq"
@@ -16,6 +16,7 @@ brew "node"
 brew "git-lfs"
 brew "starship"
 brew "lazygit"
+brew "uv"
 cask "font-meslo-lg-nerd-font"
 EOF
 
