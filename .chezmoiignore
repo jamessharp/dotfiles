@@ -9,3 +9,8 @@ README.md
 ./raycast-scripts
 .finicky.js
 {{ end -}}
+
+# 1Password SSH config only on Omarchy
+{{ if not (env "OMARCHY_PATH") -}}
+.config/1Password/
+{{ end -}}
