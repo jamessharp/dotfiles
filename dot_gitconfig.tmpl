@@ -1,5 +1,5 @@
 [user]
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG8y4k1Uj/D8MsAXC3o1YdT2lM/r8SUwiQ8P6rA5bXUE
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFvXhz410ivMF2aNynWTHVD/H/97qQworOFdArna8Brm
 	name = {{ .name }}
 	email = {{ .email }}
 [pull]
@@ -19,6 +19,10 @@
 	autocorrect = prompt
 [gpg]
   format = ssh
+{{- if stat "/opt/1Password/op-ssh-sign" }}
+[gpg "ssh"]
+  program = "/opt/1Password/op-ssh-sign"
+{{- end }}
 [alias]
   # *********************
   # Rebase workflow
