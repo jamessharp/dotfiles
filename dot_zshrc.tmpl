@@ -58,6 +58,44 @@ if [ -S ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ]; the
 {{ end -}}
 
 {{ if (env "OMARCHY_PATH") -}}
+# History settings (zsh equivalents of bash histappend)
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+HISTSIZE=32768
+SAVEHIST="${HISTSIZE}"
+
+# Omarchy aliases and functions
+source ~/.local/share/omarchy/default/bash/aliases
+source ~/.local/share/omarchy/default/bash/functions
+
+# Environment variables
+export SUDO_EDITOR="$EDITOR"
+export BAT_THEME=ansi
+
+# Zsh keybindings (equivalent to omarchy inputrc)
+setopt NO_CASE_GLOB
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+bindkey '^[[C' forward-char
+bindkey '^[[D' backward-char
+
+# Tool initializations
+if command -v mise &> /dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
+if command -v fzf &> /dev/null; then
+  [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+  [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+fi
+
+# 1Password SSH agent
 if [ -S ~/.1password/agent.sock ]; then export SSH_AUTH_SOCK=~/.1password/agent.sock; fi
 {{ end -}}
 
