@@ -5,12 +5,12 @@ README.md
 
 # Ignore a bunch of mac related stuff
 {{ if (ne .chezmoi.os "darwin") -}}
-.ssh/
 ./raycast-scripts
 .finicky.js
 {{ end -}}
 
-# 1Password SSH config only on Omarchy
-{{ if not (env "OMARCHY_PATH") -}}
+# 1Password SSH config only on mac or Omarchy
+{{ if and (ne .chezmoi.os "darwin") (not .omarchy) -}}
+.ssh/
 .config/1Password/
 {{ end -}}

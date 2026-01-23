@@ -1,5 +1,5 @@
 #!/bin/sh
-{{ if and (ne .chezmoi.os "darwin") (not (env "OMARCHY_PATH")) -}}
+{{ if and (ne .chezmoi.os "darwin") (not .omarchy) -}}
 cd ${HOME}
 curl -sS https://starship.rs/install.sh | sh -s -- --yes
 {{ end -}}

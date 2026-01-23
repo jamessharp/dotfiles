@@ -57,7 +57,7 @@ alias lg='lazygit'
 if [ -S ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ]; then export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock; fi
 {{ end -}}
 
-{{ if (env "OMARCHY_PATH") -}}
+{{ if .omarchy -}}
 # History settings (zsh equivalents of bash histappend)
 setopt APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
@@ -93,7 +93,9 @@ fi
 if command -v fzf &> /dev/null; then
   [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
   [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
-fi
+fi 
+
+alias c='claude'
 
 # 1Password SSH agent
 if [ -S ~/.1password/agent.sock ]; then export SSH_AUTH_SOCK=~/.1password/agent.sock; fi
