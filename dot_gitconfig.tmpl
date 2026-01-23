@@ -19,9 +19,11 @@
 	autocorrect = prompt
 [gpg]
   format = ssh
-{{- if stat "/opt/1Password/op-ssh-sign" }}
 [gpg "ssh"]
-  program = "/opt/1Password/op-ssh-sign"
+{{- if .omarchy }}
+  program = {{ .chezmoi.homeDir }}/.local/bin/git-ssh-sign
+{{- else if stat "/opt/1Password/op-ssh-sign" }}
+  program = /opt/1Password/op-ssh-sign
 {{- end }}
 [alias]
   # *********************

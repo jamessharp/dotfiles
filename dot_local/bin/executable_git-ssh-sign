@@ -1,0 +1,15 @@
+#!/bin/bash
+# Git SSH signing wrapper
+# Uses ssh-keygen in SSH sessions (with forwarded agent), op-ssh-sign locally
+
+if [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]; then
+    # In SSH session - use ssh-keygen which works with the forwarded agent
+    exec /usr/bin/ssh-keygen "$@"
+else
+    # Local session - use 1Password's signing tool if available
+    if [ -x /opt/1Password/op-ssh-sign ]; then
+        exec /opt/1Password/op-ssh-sign "$@"
+    else
+        exec /usr/bin/ssh-keygen "$@"
+    fi
+fi
