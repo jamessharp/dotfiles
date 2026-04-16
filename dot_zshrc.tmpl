@@ -66,6 +66,7 @@ HISTSIZE=32768
 SAVEHIST="${HISTSIZE}"
 
 # Omarchy aliases and functions
+export OMARCHY_PATH=$HOME/.local/share/omarchy
 source ~/.local/share/omarchy/default/bash/aliases
 source ~/.local/share/omarchy/default/bash/functions
 
@@ -119,5 +120,7 @@ fi
 if [ -f '{{ .chezmoi.homeDir }}/google-cloud-sdk/path.zsh.inc' ]; then source '{{ .chezmoi.homeDir }}/google-cloud-sdk/path.zsh.inc'; fi
 # The next line enables shell command completion for gcloud.
 if [ -f '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc' ]; then source '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc'; fi
+
+export KUBECONFIG=~/.kube/config
 
 eval "$(starship init zsh)"
