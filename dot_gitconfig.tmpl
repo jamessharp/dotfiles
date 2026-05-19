@@ -1,5 +1,9 @@
 [user]
+{{- if .omarchy }}
+	signingkey = {{ .chezmoi.homeDir }}/.ssh/id_ed25519.pub
+{{- else }}
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFvXhz410ivMF2aNynWTHVD/H/97qQworOFdArna8Brm
+{{- end }}
 	name = {{ .name }}
 	email = {{ .email }}
 [pull]
@@ -19,10 +23,8 @@
 	autocorrect = prompt
 [gpg]
   format = ssh
+{{- if and (not .omarchy) (stat "/opt/1Password/op-ssh-sign") }}
 [gpg "ssh"]
-{{- if .omarchy }}
-  program = {{ .chezmoi.homeDir }}/.local/bin/git-ssh-sign
-{{- else if stat "/opt/1Password/op-ssh-sign" }}
   program = /opt/1Password/op-ssh-sign
 {{- end }}
 [alias]
@@ -34,3 +36,11 @@
     squash = "!git rebase -v -i $(git mainbranch)"
     publish = push origin HEAD --force-with-lease
     pub = publish 
+{{ if stat "/usr/bin/gh" -}}
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+{{ end -}}
