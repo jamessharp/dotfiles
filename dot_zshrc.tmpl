@@ -99,6 +99,47 @@ if command -v zmx &> /dev/null; then
 fi
 
 if command -v zmx &> /dev/null && command -v fzf &> /dev/null; then
+  zmx-session-name-exists() {
+    local candidate="$1"
+    local existing_name
+    shift
+
+    for existing_name in "$@"; do
+      [[ "$existing_name" == "$candidate" ]] && return 0
+    done
+
+    return 1
+  }
+
+  zmx-random-session-name() {
+    local -a adjectives nouns
+    local adjective noun candidate base
+    local -i attempt suffix
+    adjectives=(brisk bright calm clever crisp eager flappy gentle happy lucky mellow nimble quiet rapid sunny tidy)
+    nouns=(anchor banana beacon comet dune ember harbor lantern meadow pebble rocket signal summit velvet)
+
+    for (( attempt = 1; attempt <= 64; attempt++ )); do
+      adjective="${adjectives[$(( RANDOM % ${#adjectives[@]} + 1 ))]}"
+      noun="${nouns[$(( RANDOM % ${#nouns[@]} + 1 ))]}"
+      candidate="${adjective}-${noun}"
+
+      if ! zmx-session-name-exists "$candidate" "$@"; then
+        printf "%s\n" "$candidate"
+        return 0
+      fi
+    done
+
+    base="${candidate:-zmx-session}"
+    suffix=1
+    candidate="${base}-${suffix}"
+    while zmx-session-name-exists "$candidate" "$@"; do
+      suffix+=1
+      candidate="${base}-${suffix}"
+    done
+
+    printf "%s\n" "$candidate"
+  }
+
   zmx-select() {
     local display
     display=$(zmx list 2>/dev/null | awk -F '\t' '
@@ -134,7 +175,12 @@ if command -v zmx &> /dev/null && command -v fzf &> /dev/null; then
     ')
 
     local output query key selected session_name
+    local -a existing_session_names
     local -a lines
+    if [[ -n "$display" ]]; then
+      existing_session_names=("${(@f)$(printf "%s\n" "$display" | awk '{print $1}')}")
+    fi
+
     output=$({ [[ -n "$display" ]] && echo "$display"; } | fzf \
       --print-query \
       --expect=ctrl-n \
@@ -157,8 +203,12 @@ if command -v zmx &> /dev/null && command -v fzf &> /dev/null; then
       selected="${lines[2]}"
     fi
 
-    if [[ "$key" == "ctrl-n" && -n "$query" ]]; then
-      session_name="$query"
+    if [[ "$key" == "ctrl-n" ]]; then
+      if [[ -n "$query" ]]; then
+        session_name="$query"
+      else
+        session_name="$(zmx-random-session-name "${existing_session_names[@]}")"
+      fi
     elif [[ $rc -eq 0 && -n "$selected" ]]; then
       session_name=$(echo "$selected" | awk '{print $1}')
     elif [[ -n "$query" ]]; then
