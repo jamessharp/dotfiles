@@ -103,6 +103,7 @@ if command -v zmx &> /dev/null && command -v fzf &> /dev/null; then
     local display
     display=$(zmx list 2>/dev/null | while IFS=$'\t' read -r name pid clients created dir; do
       name=${name#session_name=}
+      name=${name#name=}
       pid=${pid#pid=}
       clients=${clients#clients=}
       dir=${dir#started_in=}
