@@ -213,6 +213,9 @@ if command -v zmx &> /dev/null && command -v fzf &> /dev/null; then
     if [[ "${lines[2]}" == "ctrl-n" ]]; then
       key="${lines[2]}"
       selected="${lines[3]}"
+    elif [[ -z "${lines[2]}" && -n "${lines[3]}" ]]; then
+      key=""
+      selected="${lines[3]}"
     else
       key=""
       selected="${lines[2]}"
