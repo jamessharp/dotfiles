@@ -245,6 +245,24 @@ alias c='claude'
 alias lg='lazygit'
 alias ld='lazydocker'
 
+# Copy a remote file into the local terminal's clipboard using OSC 52.
+clipfile() {
+  if (( $# != 1 )); then
+    print -u2 "Usage: clipfile FILE"
+    return 2
+  fi
+
+  if [[ ! -f "$1" ]]; then
+    print -u2 "clipfile: file not found: $1"
+    return 1
+  fi
+
+  local encoded
+  encoded=$(base64 -w0 -- "$1") || return
+  printf '\e]52;c;%s\a' "$encoded"
+  print "Copied $1 to the terminal clipboard"
+}
+
 # OpenSSH agent (systemd user socket). Keep a forwarded SSH agent if one was supplied.
 if [ -n "${XDG_RUNTIME_DIR:-}" ] && [ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
   if [ -z "${SSH_TTY:-}${SSH_CONNECTION:-}" ] || [ -z "${SSH_AUTH_SOCK:-}" ] || [ ! -S "${SSH_AUTH_SOCK:-}" ]; then
