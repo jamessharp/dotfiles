@@ -79,6 +79,9 @@ bindkey '^[[C' forward-char
 bindkey '^[[D' backward-char
 
 # Tool initializations
+# Keep zmx sessions shared between local and SSH shells.
+export ZMX_DIR="/run/user/$UID/zmx"
+
 if command -v mise &> /dev/null; then
   eval "$(mise activate zsh)"
 fi
