@@ -39,6 +39,7 @@ read_only = " 󰌾"
 symbol = " "
 
 [env_var.ZMX_SESSION]
+disabled = true
 symbol = " "
 format = "[$symbol$env_value]($style) "
 description = "zmx session name"
