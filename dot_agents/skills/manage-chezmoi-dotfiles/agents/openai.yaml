@@ -1,0 +1,4 @@
+interface:
+  display_name: "Manage Chezmoi Dotfiles"
+  short_description: "Sync, validate, commit, and push dotfiles"
+  default_prompt: "Use $manage-chezmoi-dotfiles to update this configuration and publish it through chezmoi."
