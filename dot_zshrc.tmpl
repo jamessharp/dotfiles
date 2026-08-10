@@ -243,9 +243,10 @@ if command -v zmx &> /dev/null && command -v fzf &> /dev/null; then
 fi
 
 {{ if and .omarchy (eq .chezmoi.hostname "desktop") -}}
-if command -v zmx &> /dev/null && command -v fzf &> /dev/null && [[ -z "$ZMX_SESSION" ]]; then
-  zmx-select && exit
-fi
+# Temporarily disabled: automatic zmx session picker on shell startup.
+# if command -v zmx &> /dev/null && command -v fzf &> /dev/null && [[ -z "$ZMX_SESSION" ]]; then
+#   zmx-select && exit
+# fi
 {{ end }}
 alias c='claude'
 alias lg='lazygit'
