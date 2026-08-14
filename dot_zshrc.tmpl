@@ -30,7 +30,9 @@ then
   load-nvmrc
 fi
 
-command -v corepack >/dev/null 2>&1 && corepack enable
+if command -v corepack >/dev/null 2>&1 && corepack --version >/dev/null 2>&1; then
+  corepack enable
+fi
 
 export GPG_TTY=$TTY
 
@@ -90,7 +92,7 @@ if command -v zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
-if command -v fzf &> /dev/null; then
+if command -v fzf &> /dev/null && [[ -o zle && -t 0 ]]; then
   [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
   [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 fi 
@@ -98,7 +100,6 @@ fi
 if command -v zmx &> /dev/null; then
   autoload -Uz compinit
   (( $+functions[compdef] )) || compinit
-  eval "$(zmx completions zsh)"
 fi
 
 if command -v zmx &> /dev/null && command -v fzf &> /dev/null; then
