@@ -249,6 +249,13 @@ fi
 #   zmx-select && exit
 # fi
 {{ end }}
+
+# Keep Codex shell commands in the launching terminal environment instead of
+# reusing a long-lived app-server environment.
+codex() {
+  command codex -c shell_environment_policy.inherit=all "$@"
+}
+
 alias c='claude'
 alias lg='lazygit'
 alias ld='lazydocker'
