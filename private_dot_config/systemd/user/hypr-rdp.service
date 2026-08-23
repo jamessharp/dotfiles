@@ -1,0 +1,25 @@
+[Unit]
+Description=Hyprland RDP server (Tailscale only)
+Documentation=https://github.com/MuNeNICK/hypr-rdp
+After=graphical-session.target
+PartOf=graphical-session.target
+ConditionPathExists=%h/.config/hypr-rdp/config.toml
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hypr-rdp --config %h/.config/hypr-rdp/config.toml
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=%h/.config/hypr-rdp
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+LockPersonality=yes
+
+[Install]
+WantedBy=graphical-session.target
