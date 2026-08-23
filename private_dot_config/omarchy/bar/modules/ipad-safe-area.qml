@@ -9,7 +9,7 @@ Item {
   readonly property var hostWindow: QsWindow.window
   readonly property string hostOutput: hostWindow && hostWindow.screen ? hostWindow.screen.name : ""
   readonly property string targetOutput: settings && settings.output ? String(settings.output) : ""
-  readonly property int span: settings && settings.size !== undefined ? Number(settings.size) : 24
+  readonly property int span: settings && settings.size !== undefined ? Number(settings.size) : 12
   readonly property bool enabledForOutput: hostOutput === targetOutput
 
   implicitWidth: bar && bar.vertical ? bar.barSize : (enabledForOutput ? span : 0)

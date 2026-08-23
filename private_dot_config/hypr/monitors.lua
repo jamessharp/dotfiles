@@ -15,7 +15,14 @@ hl.monitor({
   mode = "preferred",
   position = "auto",
   scale = 1.25,
-  reserved_area = 24,
+  reserved_area = 12,
+})
+
+-- Round windows only while they are displayed on the GLKVM workspace.
+hl.window_rule({
+  name = "glkvm-rounded-windows",
+  match = { workspace = "m[HDMI-A-1]" },
+  rounding = 12,
 })
 
 -- Configure a specific monitor.
