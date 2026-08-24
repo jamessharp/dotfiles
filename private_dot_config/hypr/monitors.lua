@@ -15,7 +15,7 @@ hl.monitor({
   mode = "preferred",
   position = "auto",
   scale = 1.25,
-  reserved_area = 12,
+  reserved_area = 6,
 })
 
 -- Round windows only while they are displayed on the GLKVM workspace.
