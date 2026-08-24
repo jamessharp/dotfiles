@@ -7,7 +7,7 @@ ConditionPathExists=%h/.config/hypr-rdp/config.toml
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/hypr-rdp --config %h/.config/hypr-rdp/config.toml
+ExecStart=%h/.local/bin/hypr-rdp-nscodec --config %h/.config/hypr-rdp/config.toml
 Restart=on-failure
 RestartSec=5s
 NoNewPrivileges=yes
