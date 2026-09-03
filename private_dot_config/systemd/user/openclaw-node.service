@@ -8,6 +8,8 @@ Type=simple
 WorkingDirectory=/home/james
 Environment=HOME=/home/james
 Environment=OPENCLAW_PROFILE=node
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 Environment=PATH=/home/james/.local/share/mise/installs/codex/latest/bin:/home/james/.local/share/mise/installs/gh/latest/gh_2.98.0_linux_amd64/bin:/home/james/.local/share/mise/installs/node/25.2.1/bin:/home/james/.local/share/mise/installs/pnpm/latest:/home/james/.local/share/mise/shims:/home/james/.local/bin:/home/james/go/bin:/usr/local/go/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 ExecStart=/home/james/.local/bin/openclaw --profile node node run --host openclaw.atlas-cobia.ts.net --port 443 --tls --display-name framework --no-share-installed-apps
 Restart=always
