@@ -41,3 +41,6 @@
 **/.gradle
 **/.terraform
 **/.direnv
+/home/james/.windows/data.img
+/home/james/Development/gh-public/ds4/gguf
+/home/james/Windows/icloud-photos-import
