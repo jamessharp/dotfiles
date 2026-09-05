@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-readonly openclaw_install=/home/james/.local/share/openclaw-node/node-v24.19.0
-exec "$openclaw_install/bin/node" \
-  "$openclaw_install/lib/node_modules/openclaw/dist/entry.js" "$@"

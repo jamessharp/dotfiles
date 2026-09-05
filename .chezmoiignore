@@ -14,3 +14,8 @@ README.md
 .ssh/
 .config/1Password/
 {{ end -}}
+
+# Framework-local OpenClaw runtime: retain locally, never replay as dotfiles.
+.config/systemd/user/openclaw-node.service
+.config/systemd/user/default.target.wants/openclaw-node.service
+.local/bin/openclaw
