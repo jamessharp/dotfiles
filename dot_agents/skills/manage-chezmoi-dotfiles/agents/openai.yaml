@@ -1,4 +1,4 @@
 interface:
   display_name: "Manage Chezmoi Dotfiles"
-  short_description: "Sync, validate, commit, and push dotfiles"
-  default_prompt: "Use $manage-chezmoi-dotfiles to update this configuration and publish it through chezmoi."
+  short_description: "Maintain reusable, public personal dotfiles"
+  default_prompt: "Use $manage-chezmoi-dotfiles to update reusable dotfiles while keeping machine-specific configuration local."

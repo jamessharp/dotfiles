@@ -1,9 +1,4 @@
 [user]
-{{- if .omarchy }}
-	signingkey = {{ .chezmoi.homeDir }}/.ssh/id_ed25519.pub
-{{- else }}
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFvXhz410ivMF2aNynWTHVD/H/97qQworOFdArna8Brm
-{{- end }}
 	name = {{ .name }}
 	email = {{ .email }}
 [pull]
@@ -44,3 +39,6 @@
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
 {{ end -}}
+# Per-machine identity/overrides remain outside source control.
+[include]
+	path = ~/.gitconfig.local

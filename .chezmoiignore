@@ -1,21 +1,38 @@
 .github/
+.gitignore
 install.sh
 LICENSE
 README.md
+tests/
 
-# Ignore a bunch of mac related stuff
-{{ if (ne .chezmoi.os "darwin") -}}
-./raycast-scripts
+# macOS applications
+{{ if ne .chezmoi.os "darwin" -}}
+.raycast-scripts/
 .finicky.js
 {{ end -}}
 
-# 1Password SSH config only on mac or Omarchy
-{{ if and (ne .chezmoi.os "darwin") (not .omarchy) -}}
-.ssh/
-.config/1Password/
+# Omarchy preferences
+{{ if not .omarchy -}}
+.config/hypr/
+.config/xkb/
+.config/environment.d/ssh-agent.conf
 {{ end -}}
 
-# Framework-local OpenClaw runtime: retain locally, never replay as dotfiles.
-.config/systemd/user/openclaw-node.service
-.config/systemd/user/default.target.wants/openclaw-node.service
+# SSH integration is configured only for macOS and Omarchy.
+{{ if and (ne .chezmoi.os "darwin") (not .omarchy) -}}
+.ssh/
+{{ end -}}
+
+# Local configuration and runtime state are never replayed as generic dotfiles.
+AGENTS.md
+.gitconfig.local
+.zshrc.local
+.config/hypr/monitors.lua
+.config/omarchy/
+.config/1Password/
+.config/restic/
+.config/sunshine/
+.config/hypr-rdp/
+.config/systemd/
+.openclaw*/
 .local/bin/openclaw

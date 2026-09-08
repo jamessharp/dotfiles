@@ -1,0 +1,20 @@
+# Local agent settings and machine context
+/.claude/
+/.codex/
+/AGENTS.md
+
+# Optional local includes
+/*dot_gitconfig.local*
+/*dot_zshrc.local*
+
+# Host-only configuration and agent state
+/private_dot_openclaw*/
+/dot_openclaw*/
+/private_dot_config/hypr/monitors.lua
+/private_dot_config/omarchy/
+/private_dot_config/private_1Password/
+/private_dot_config/private_restic/
+/private_dot_config/sunshine/
+/private_dot_config/hypr-rdp/
+/private_dot_config/systemd/
+/dot_local/bin/executable_openclaw
